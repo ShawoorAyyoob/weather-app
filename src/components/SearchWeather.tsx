@@ -1,24 +1,30 @@
 import { useState } from "react";
 import { fetchWeather } from "../services/WeatherService";
-
-const IMAGE_URL = "//cdn.weatherapi.com/weather/64x64/day/296.png";
+import "../styles/SearchWeather.css"
 
 const SearchWeather: React.FC = () => {
   const [weather, setWeather] = useState<any>(null);
-  const [city, setCity] = useState("");
-  const [error, setError] = useState<String | null>(null);
+  const [city, setCity] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
   const searchHandle = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!city.trim()) {
+      setError("Please enter a city.");
+      setWeather(null);
+      return;
+    }
+    setError(null)
     try {
       const response = await fetchWeather(city);
       setWeather(response);
     } catch (error) {
-      setError("Could not fetch weather data. Please try again later.");
+      setError("Could not fetch weather data. Please enter correct city.");
+      setWeather(null);
     }
   };
   return (
-    <div className="mb-4">
+    <form className="searchForm" onSubmit={searchHandle} aria-label="Search weather">
       <input
         type="text"
         className="form-control"
@@ -26,21 +32,22 @@ const SearchWeather: React.FC = () => {
         value={city}
         onChange={(e) => setCity(e.target.value)}
       />
-      <button className="btn btn-primary mt-2" onClick={searchHandle}>
+      <button className="btn btn-primary mt-2" type="submit">
        🔎 Search City
       </button>
 
         {error && <div className="alert alert-danger mt-2">{error}</div>}
          {weather && (
-        <div className="card p-3 shadow-sm mt-3">
-          <h4>{weather.location.name}</h4>
-          <p>🌡️ Temp: {weather.current.temp_c}°C</p>
-          <p>💧 Humidity: {weather.current.humidity}%</p>
-          <p>🌬️ Wind: {weather.current.wind_kph} km/h</p>
-          <img src={weather.current.condition.icon} alt="Weather icon" />
+        <div className="card shadow-sm ">
+          <div className="city">{weather.location.name}, {weather.location.country}</div>
+          <div className="details">
+            <div>{weather.location.localtime}</div>
+            <div>Temp: <strong>{weather.current.temp_c}°C</strong></div>
+            <div>Humidity: {weather.current.humidity}%</div>
+          </div>
         </div>
       )}
-      </div>
+      </form>
   );
 };
 export default SearchWeather;
