@@ -50,7 +50,11 @@ const WeatherCard: React.FC = () => {
         onChange={(e) => setCity(e.target.value)}
       />
       <div style={{ display: "flex", gap: 8 }}>
-        <button className="btn btn-primary" onClick={handleSearch} disabled={loading}>
+        <button
+          className="btn btn-primary"
+          onClick={handleSearch}
+          disabled={loading}
+        >
           {loading ? "Searching..." : "🔎 Search"}
         </button>
         <button className="btn btn-outline" onClick={handleClear}>
@@ -63,19 +67,30 @@ const WeatherCard: React.FC = () => {
 
       {weather && (
         <div className="card">
-          <img
-            src={weather.current.condition.icon}
-            alt={weather.current.condition.text}
-            className="weatherIcon"
-          />
+          <div
+            style={{
+              fontSize: "35px",
+              fontWeight: "500",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginBottom: "16px",
+            }}
+          >
+            <img
+              src={weather.current.condition.icon}
+              alt={weather.current.condition.text}
+              className="weatherIcon"
+              style={{ margin: 0 }}
+            />
+            <div style={{ color: "#667eea" }} />
+            <b>{weather.current.temp_c}°C </b>
+          </div>
           <div className="cityName">
             {weather.location.name}, {weather.location.country}
           </div>
           <div className="weatherDetails">
             <div>{weather.location.localtime}</div>
-            <div>
-              🌡️ <strong>{weather.current.temp_c}°C</strong> — {weather.current.condition.text}
-            </div>
             <div>💧 Humidity: {weather.current.humidity}%</div>
           </div>
         </div>
