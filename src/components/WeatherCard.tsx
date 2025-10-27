@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fetchWeather } from "../services/WeatherService";
 import "../styles/WeatherCard.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import type Weather from "../models/Weather";
 
 const WeatherCard: React.FC = () => {
@@ -90,8 +91,20 @@ const WeatherCard: React.FC = () => {
             {weather.location.name}, {weather.location.country}
           </div>
           <div className="weatherDetails">
-            <div>{weather.location.localtime}</div>
-            <div>💧 Humidity: {weather.current.humidity}%</div>
+            <div className="row text-center">
+              <div className="col-6 mb-3 animate-icon">
+                🕛 Time: {weather.location.localtime}
+              </div>
+              <div className="col-6 mb-3 animate-icon">
+                💧 Humidity: {weather.current.humidity}%
+              </div>
+              <div className="col-6 mb-3 animate-icon">
+                🍃 Wind: {weather.current.wind_kph} kph
+              </div>
+              <div className="col-6 mb-3 animate-icon">
+                🔆 UV Index: {weather.current.uv}
+              </div>
+            </div>
           </div>
         </div>
       )}
