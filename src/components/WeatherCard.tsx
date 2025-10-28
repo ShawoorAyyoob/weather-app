@@ -10,8 +10,8 @@ const WeatherCard: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSearch = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     const cities = city.trim();
     if (!cities) {
       setWeather(null);
@@ -24,7 +24,7 @@ const WeatherCard: React.FC = () => {
       const weatherDetails = await fetchWeather(cities);
       setWeather(weatherDetails);
     } catch (error) {
-      setError("Failed to fetch weather data.");
+      setError("Failed to fetch weather details.");
       setWeather(null);
     } finally {
       setLoading(false);
@@ -36,6 +36,11 @@ const WeatherCard: React.FC = () => {
     setError(null);
   };
 
+const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key == "Enter") {
+      handleSearch();
+    }
+  };
   return (
     <div className="cardContainer">
       <label className="visually-hidden" htmlFor="cityInput">
@@ -49,6 +54,7 @@ const WeatherCard: React.FC = () => {
         aria-label="City name input"
         value={city}
         onChange={(e) => setCity(e.target.value)}
+        onKeyPress={handleKeyPress}
       />
       <div style={{ display: "flex", gap: 8 }}>
         <button
@@ -76,6 +82,7 @@ const WeatherCard: React.FC = () => {
               alignItems: "center",
               gap: "12px",
               marginBottom: "16px",
+              marginLeft: "190px"
             }}
           >
             <img
@@ -90,7 +97,7 @@ const WeatherCard: React.FC = () => {
           <div className="cityName">
             {weather.location.name}, {weather.location.country}
           </div>
-          <div className="weatherDetails">
+          <div className="weatherDetails" style={{fontWeight: "500"}}>
             <div className="row text-center">
               <div className="col-6 mb-3 animate-icon">
                 🕛 Time: {weather.location.localtime}
