@@ -5,10 +5,15 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-  background: 
-    linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%),
-    url('https://images.unsplash.com/photo-1601134467661-3d775b999c8b?q=80&w=2000') center/cover no-repeat fixed;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", sans-serif;
+  background: linear-gradient(
+      135deg,
+      rgba(102, 126, 234, 0.7) 0%,
+      rgba(118, 75, 162, 0.7) 100%
+    ),
+    url("https://images.unsplash.com/photo-1601134467661-3d775b999c8b?q=80&w=2000")
+      center/cover no-repeat fixed;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -19,21 +24,29 @@ body {
 }
 
 body::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
   background-size: 50px 50px;
   animation: drift 20s linear infinite;
   pointer-events: none;
 }
 
 @keyframes drift {
-  from { transform: translate(0, 0); }
-  to { transform: translate(50px, 50px); }
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(50px, 50px);
+  }
 }
 
 .container {
@@ -174,9 +187,16 @@ body::before {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 .loading {
@@ -188,8 +208,13 @@ body::before {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .visually-hidden {
@@ -202,10 +227,30 @@ body::before {
 }
 
 @media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
   .cardContainer {
     padding: 32px 24px;
   }
+  .cityInput {
+    padding: 14px 18px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
 
+  .btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+  .weatherDetails {
+    font-size: 15px;
+  }
+
+  .alert {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
   .cityName {
     font-size: 24px;
   }
@@ -214,12 +259,63 @@ body::before {
     padding: 24px;
   }
 }
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+
+  .cardContainer {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .cityInput {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  .btn {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .cityName {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 20px 16px;
+    margin-top: 20px;
+  }
+
+  .weatherDetails {
+    font-size: 14px;
+  }
+
+  .alert {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .loading {
+    font-size: 16px;
+  }
+}
 .animate-icon {
   animation: pulse 1.5s infinite ease-in-out;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
