@@ -73,54 +73,17 @@ const WeatherCard: React.FC = () => {
       {error && <div className="alert alert-danger">{error}</div>}
 
       {weather && (
-        <div
-          style={{
-            maxWidth: "1100px",
-            width: "100%",
-            margin: "0 auto",
-            backgroundColor: "#f0f4f8",
-            borderRadius: "32px",
-            padding: "30px 70px",
-            boxShadow: "0 10px 40px rgba(0,0,0,0.1)",
-          }}
-        >
-          <div
-            style={{
-              marginBottom: "25px",
-            }}
-          >
-            <h1
-              style={{
-                fontSize: "42px",
-                fontWeight: "700",
-                color: "#1e3a5f",
-                marginBottom: "4px",
-                lineHeight: 1,
-              }}
-            >
+        <div className="weather-display">
+          <div className="weather-header">
+            <h1 className="weather-city">
               {weather.location.name}
             </h1>
-            <p
-              style={{
-                fontSize: "18px",
-                color: "#6b7c93",
-                margin: 0,
-              }}
-            >
+            <p className="weather-country">
               {weather.location.country}
             </p>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginBottom: "25px",
-              paddingBottom: "25px",
-              borderBottom: "1px solid #d1dce6",
-            }}
-          >
+          <div className="weather-main">
             <img
               src={
                 weather.current.condition.icon?.startsWith("http")
@@ -128,186 +91,54 @@ const WeatherCard: React.FC = () => {
                   : `https:${weather.current.condition.icon}`
               }
               alt={weather.current.condition.text}
-              style={{
-                width: "110px",
-                height: "110px",
-                objectFit: "contain",
-              }}
+              className="weather-icon"
             />
-            <div style={{ textAlign: "right" }}>
-              <div
-                style={{
-                  fontSize: "75px",
-                  fontWeight: "300",
-                  color: "#1e3a5f",
-                  lineHeight: 1,
-                  marginBottom: "6px",
-                }}
-              >
+            <div className="weather-temp-container">
+              <div className="weather-temp">
                 {weather.current.temp_c}°
               </div>
-              <div
-                style={{
-                  fontSize: "18px",
-                  color: "#6b7c93",
-                  fontWeight: "500",
-                }}
-              >
+              <div className="weather-condition">
                 {weather.current.condition.text}
               </div>
             </div>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "30px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "16px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "32px",
-                  color: "#5eb3e4",
-                }}
-              >
-                💧
-              </div>
+          <div className="weather-stats">
+            <div className="weather-stat">
+              <div className="weather-stat-icon">💧</div>
               <div>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    color: "#6b7c93",
-                    marginBottom: "4px",
-                  }}
-                >
-                  Humidity
-                </div>
-                <div
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "600",
-                    color: "#1e3a5f",
-                  }}
-                >
+                <div className="weather-stat-label">Humidity</div>
+                <div className="weather-stat-value">
                   {weather.current.humidity}%
                 </div>
               </div>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "16px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "32px",
-                  color: "#5eb3e4",
-                }}
-              >
-                🍃
-              </div>
+            <div className="weather-stat">
+              <div className="weather-stat-icon">🍃</div>
               <div>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    color: "#6b7c93",
-                    marginBottom: "4px",
-                  }}
-                >
-                  Wind Speed
-                </div>
-                <div
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "600",
-                    color: "#1e3a5f",
-                  }}
-                >
+                <div className="weather-stat-label">Wind Speed</div>
+                <div className="weather-stat-value">
                   {weather.current.wind_kph} km/h
                 </div>
               </div>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "16px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "32px",
-                  color: "#5eb3e4",
-                }}
-              >
-                🔆
-              </div>
+            <div className="weather-stat">
+              <div className="weather-stat-icon">🔆</div>
               <div>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    color: "#6b7c93",
-                    marginBottom: "4px",
-                  }}
-                >
-                  UV Index
-                </div>
-                <div
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "600",
-                    color: "#1e3a5f",
-                  }}
-                >
+                <div className="weather-stat-label">UV Index</div>
+                <div className="weather-stat-value">
                   {weather.current.uv}
                 </div>
               </div>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "16px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "32px",
-                  color: "#5eb3e4",
-                }}
-              >
-                🕛
-              </div>
+            <div className="weather-stat">
+              <div className="weather-stat-icon">🕛</div>
               <div>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    color: "#6b7c93",
-                    marginBottom: "4px",
-                  }}
-                >
-                  Time
-                </div>
-                <div
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "600",
-                    color: "#1e3a5f",
-                  }}
-                >
+                <div className="weather-stat-label">Time</div>
+                <div className="weather-stat-value">
                   {weather.location.localtime.split(" ")[1]}
                 </div>
               </div>
