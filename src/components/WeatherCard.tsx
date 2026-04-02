@@ -3,6 +3,7 @@ import { fetchWeather } from "../services/WeatherService";
 import "../styles/WeatherCard.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import type Weather from "../models/Weather";
+import { Link } from "react-router-dom";
 
 const WeatherCard: React.FC = () => {
   const [city, setCity] = useState<string>("");
@@ -41,35 +42,27 @@ const WeatherCard: React.FC = () => {
       handleSearch();
     }
   };
-  
+
   return (
-     <>
+    <>
       <nav className="navbar">
         <div className="navbar-container">
-          <a href="#" className="navbar-brand">
+          <Link to="/" className="navbar-brand">
             <span className="navbar-logo">🌤️</span>
-            <span>AeroVision </span>
-          </a>
+            <span>AeroVision</span>
+          </Link>
           <ul className="navbar-menu">
             <li>
-              <a href="#" className="navbar-link">
-                Home
-              </a>
+              <Link to="/" className="navbar-link">Home</Link>
             </li>
             <li>
-              <a href="#" className="navbar-link">
-                Forecast
-              </a>
+              <Link to="/forecast" className="navbar-link">Forecast</Link>
             </li>
             <li>
-              <a href="#" className="navbar-link">
-                Map
-              </a>
+              <Link to="/map" className="navbar-link">Map</Link>
             </li>
             <li>
-              <a href="#" className="navbar-link">
-                About
-              </a>
+              <Link to="/about" className="navbar-link">About</Link>
             </li>
           </ul>
         </div>
