@@ -4,7 +4,7 @@ import WeatherCard from "./components/WeatherCard";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/weather-app">
       <Routes>
         <Route path="/" element= {<WeatherCard/>}></Route>
         {/* <Route path="/about" element={<About/>}/>
